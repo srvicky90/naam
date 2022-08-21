@@ -28,7 +28,9 @@ app.post("/submitRequest", async (request, response) => {
     try {
         let orphanageRequest = new OrphanageRequests(request.body)
         await orphanageRequest.save()
-        response.send(orphanageRequest)
+        response.send(
+            { requestId: orphanageRequest.requestId }
+            )
     } catch (err) {
         response.send({ message: err})
     }
