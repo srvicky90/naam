@@ -16,6 +16,7 @@ const OrphanageRequests = new mongoose.Schema({
     dateNeeded: Date,
     requestType: String,
     isFulfilled: Boolean,
+    dateCreated: { type: Date, default: Date.now}
 })
 
 module.exports = mongoose.model('orphanage_requests', OrphanageRequests)

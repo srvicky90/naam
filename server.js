@@ -29,9 +29,7 @@ app.post("/submitRequest", async (request, response) => {
     try {
         let orphanageRequest = new OrphanageRequests(request.body)
         await orphanageRequest.save()
-        response.send(
-            { requestId: orphanageRequest.requestId }
-            )
+        response.send( { requestId: orphanageRequest.requestId } )
     } catch (err) {
         response.send({ message: err})
     }
@@ -48,10 +46,23 @@ app.listen(process.env.PORT || 3000, ()=> {
     console.log('Listening to 3000')
 })
 
-// GET LIST OF ALL REQUESTS
-app.get('/requests/', function(req, res) {
-    OrphanageRequests.find(({}), function(err, val) {
-        res.send(val)
+// GET LIST OF ALL REQUESTS FOR A SPECIFC ORPHANAGE
+app.get('/requests', function(req, res) {
+    console.log('Requested Orphange ID', req.query.orphanageId)
+    const orpId = req.query.orphanageId
+    OrphanageRequests.find(({ orphanageId : orpId }), function(err, val) {
+        try {
+            if(err) {
+            res.status(500).send(err)
+        } else {
+            if (val.length == 0) {
+                res.status(201).send('No Requests available')
+            } else {
+                res.status(200).send(val)
+            }
+        }
+    } catch {
+            res.send(500)
+        }
     })
 })
-
