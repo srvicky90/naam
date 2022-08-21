@@ -1,3 +1,4 @@
+const { Router } = require('express')
 const express = require('express')
 const { mongo } = require('mongoose')
 const mongoose = require('mongoose')
@@ -37,6 +38,8 @@ app.post("/submitRequest", async (request, response) => {
     console.log(request.params)
 })
 
+
+
 mongoose.connect("mongodb+srv://srvignesh:MyMongo$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
     console.log('Connected to Mongo DB')
 })
@@ -44,3 +47,11 @@ mongoose.connect("mongodb+srv://srvignesh:MyMongo$09@cluster0.ofqeznu.mongodb.ne
 app.listen(process.env.PORT || 3000, ()=> {
     console.log('Listening to 3000')
 })
+
+// GET LIST OF ALL REQUESTS
+app.get('/requests/', function(req, res) {
+    OrphanageRequests.find(({}), function(err, val) {
+        res.send(val)
+    })
+})
+
