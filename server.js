@@ -24,18 +24,18 @@ app.get("/orphanages", (request, response) => {
     })
 }) 
 
-app.post("/submitRequest", async (request, reponse) => {
+app.post("/submitRequest", async (request, response) => {
     try {
         let orphanageRequest = new OrphanageRequests(request.body)
-        orphanageRequest.save()
-        res.send('Created Request')
+        await orphanageRequest.save()
+        response.send(orphanageRequest)
     } catch (err) {
         response.send({ message: err})
     }
     console.log(request.params)
 })
 
-mongoose.connect("mongodb+srv://srvignesh:MyMongodb$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
+mongoose.connect("mongodb+srv://srvignesh:MyMongo$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
     console.log('Connected to Mongo DB')
 })
 

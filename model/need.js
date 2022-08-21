@@ -1,7 +1,10 @@
 const  mongoose = require('mongoose')
 
 const OrphanageRequests = new mongoose.Schema({
-    orphanageId: String,
+    orphanageId: {
+        type: String, 
+        required: true,
+    },
     requestDescription: String,
     dateNeeded: Date,
     requestType: String
