@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const OrphanageRequests = require("./model/need")
 const app = express()
 
-app.use(express.json)
+app.use(express.json())
 const mw = (req, res, next) => {
     console.log('Welcome to my MW')
     next()
