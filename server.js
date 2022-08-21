@@ -6,12 +6,12 @@ const OrphanageRequests = require("./model/need")
 const app = express()
 
 // app.use(express.json)
-// const mw = (req, res, next)=> {
-//     console.log('Welcome to my MW')
-//     next()
-// }
+const mw = (req, res, next) => {
+    console.log('Welcome to my MW')
+    next()
+}
 
-// app.use(mw) 
+app.use(mw) 
 
 app.get("/", (request, response) => {
     response.send("First request!!!")
