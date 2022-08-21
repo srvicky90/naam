@@ -1,7 +1,7 @@
 const express = require('express')
 const { mongo } = require('mongoose')
 const mongoose = require('mongoose')
-require('dotenv/config')
+// require('dotenv/config')
 const OrphanageRequests = require("./model/need")
 const app = express()
 
@@ -35,7 +35,7 @@ app.post("/submitRequest", async (request, reponse) => {
     console.log(request.params)
 })
 
-mongoose.connect(process.env.DB_CONNECTION_STRING, (request, response) => {
+mongoose.connect("mongodb+srv://srvignesh:MyMongodb$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
     console.log('Connected to Mongo DB')
 })
 
