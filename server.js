@@ -29,14 +29,12 @@ app.post("/submitRequest", async (request, response) => {
     try {
         let orphanageRequest = new OrphanageRequests(request.body)
         await orphanageRequest.save()
-        response.send( { requestId: orphanageRequest.requestId } )
+        response.status(200).send( { requestId: orphanageRequest.requestId } )
     } catch (err) {
-        response.send({ message: err})
+        response.status(500).send({ message: err})
     }
     console.log(request.params)
 })
-
-
 
 mongoose.connect("mongodb+srv://srvignesh:MyMongo$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
     console.log('Connected to Mongo DB')
