@@ -73,3 +73,8 @@ app.get('/requests', function(req, res) {
         }
     })
 })
+
+app.post("register", function(req, res) {
+    console.log('register');
+    res.send("register");
+})
