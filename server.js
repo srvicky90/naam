@@ -6,7 +6,8 @@ const OrphanageRequests = require("./model/need")
 const app = express()
 
 app.use(express.json())
-authService = require('./routes/auth');
+// TODO: Not working
+authService = require('../naam/routes/auth');
 app.use('api/user', authService);
 
 const mw = (req, res, next) => {
@@ -74,6 +75,9 @@ app.get('/requests', function(req, res) {
     })
 })
 
+/*
+registers a new user
+*/
 app.post("/register", function(req, res) {
     console.log('register');
     res.send("register");
