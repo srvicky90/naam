@@ -3,7 +3,7 @@ const router = require('express').Router();
 /*
 register
 */
-router.post("/register", (req, res) => {
+router.post("/register2", (req, res) => {
     console.log('Register method');
     res.send("Register");
 });
