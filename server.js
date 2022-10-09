@@ -2,13 +2,14 @@ const { Router } = require('express')
 const express = require('express')
 const { mongo } = require('mongoose')
 const mongoose = require('mongoose')
-// require('dotenv/config')
 const OrphanageRequests = require("./model/need")
 const app = express()
 
 app.use(express.json())
+authService = require('./routes/auth');
+app.use('api/user', authService);
+
 const mw = (req, res, next) => {
-    console.log('Welcome to my MW')
     next()
 }
 
@@ -21,9 +22,6 @@ app.listen(process.env.PORT || 3000, ()=> {
 })
 
 app.use(mw) 
-
-authService = require('./routes/auth');
-app.use('api/user', authService);
 
 app.get("/", (request, response) => {
     response.send("welcome to naam....")
