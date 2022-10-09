@@ -1,6 +1,3 @@
-const express = require('express');
-const { model } = require('mongoose');
-const app = express();
 const router = require('express').Router();
 
 /*
