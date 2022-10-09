@@ -12,12 +12,26 @@ const mw = (req, res, next) => {
     next()
 }
 
+mongoose.connect("mongodb+srv://srvignesh:MyMongo$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
+    console.log('Connected to Mongo DB')
+})
+
+app.listen(process.env.PORT || 3000, ()=> {
+    console.log('Listening to 3000')
+})
+
 app.use(mw) 
+
+authService = require('./routes/auth');
+app.use(authService);
 
 app.get("/", (request, response) => {
     response.send("welcome to naam....")
 })
 
+/*
+get list of orphanages
+*/
 app.get("/orphanages", (request, response) => {
     let orpahanges = ["ATC", "Nesakarangal", "Udhavum Karangal"]
     response.send({
@@ -25,6 +39,9 @@ app.get("/orphanages", (request, response) => {
     })
 }) 
 
+/*
+submit a request from the orphanage
+*/
 app.post("/submitRequest", async (request, response) => {
     try {
         let orphanageRequest = new OrphanageRequests(request.body)
@@ -36,15 +53,9 @@ app.post("/submitRequest", async (request, response) => {
     console.log(request.params)
 })
 
-mongoose.connect("mongodb+srv://srvignesh:MyMongo$09@cluster0.ofqeznu.mongodb.net/?retryWrites=true&w=majority", (request, response) => {
-    console.log('Connected to Mongo DB')
-})
-
-app.listen(process.env.PORT || 3000, ()=> {
-    console.log('Listening to 3000')
-})
-
-// GET LIST OF ALL REQUESTS FOR A SPECIFC ORPHANAGE
+/*
+get a list of all requests posted by a given orphanage
+*/
 app.get('/requests', function(req, res) {
     console.log('Requested Orphange ID', req.query.orphanageId)
     const orpId = req.query.orphanageId
