@@ -23,7 +23,7 @@ app.listen(process.env.PORT || 3000, ()=> {
 app.use(mw) 
 
 authService = require('./routes/auth');
-app.use(authService);
+app.use('api/user', authService);
 
 app.get("/", (request, response) => {
     response.send("welcome to naam....")
