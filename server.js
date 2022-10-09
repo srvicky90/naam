@@ -7,7 +7,7 @@ const app = express()
 
 app.use(express.json())
 // TODO: Not working
-authService = require('../naam/routes/auth');
+authService = require('./routes/auth');
 app.use('api/user', authService);
 
 const mw = (req, res, next) => {
