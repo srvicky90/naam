@@ -6,7 +6,8 @@ const router = require('express').Router();
 /*
 register
 */
-app.post('/register', (req, res) => {
+router.post('/register', (req, res) => {
+    console.log('Register method');
     res.send("Register");
 });
 
@@ -14,7 +15,7 @@ app.post('/register', (req, res) => {
 /*
 login
 */
-app.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
     res.send("Login");
 });
 
